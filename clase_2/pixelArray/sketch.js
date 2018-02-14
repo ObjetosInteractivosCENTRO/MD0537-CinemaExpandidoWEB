@@ -16,23 +16,30 @@
  *****************************************
  *****************************************
  */
- 
- // Video
- var video;
+
+var video;
 
 /*
  *****************************************
  *****************************************
- * Life Cycle METHODS
+ * LIFE CYCLE METHODS
  *****************************************
  *****************************************
  */
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
 function setup() {
-  createCanvas(600,400);
-  initializeVideo();
+  createCanvas(displayWidth, displayHeight);
+  initilizeVideo();
 }
 
 function draw() {
+  background(0);
   drawVideo();
 }
 
@@ -44,27 +51,34 @@ function draw() {
  *****************************************
  *****************************************
  */
- 
- 
- function initializeVideo(){
-     video = createVideo("assets/videos/fingers.mov");
-     video.loop();
-     video.hide();
- }
- 
- function drawVideo(){
-   
-   video.loadPixels();
-   
-   video.pixels[0]=255;
-   video.pixels[1]=0;
-   video.pixels[2]=0;
-   video.pixels[3]=255;
 
-   video.updatePixels();
-   
-   
-   image(video,0,0);
- 
- }
+function initilizeVideo() {
 
+  video = createVideo("assets/videos/fingers.mov");
+  video.loop();
+  video.hide();
+
+}
+
+function drawVideo() {
+  var correctionX = (windowWidth / 2) - video.width / 2;
+  var correctionY = (windowHeight / 2) - video.height / 2;
+
+  video.loadPixels();
+
+  for (var y = 0; y < video.height; y++) {
+
+    for (var x = 0; x < video.width; x++) {
+        var index = (x + (y * video.width))*4;
+        
+        video.pixels[index]  = video.pixels[index +1];// Aquí tengo los rojos
+        video.pixels[index + 1]  = video.pixels[index + 2] ;
+        video.pixels[index + 2]  = video.pixels[index + 1] ;
+        video.pixels[index + 3]  = video.pixels[index + 3] ;
+    }
+  }
+
+  video.updatePixels();
+
+  image(video, correctionX, correctionY);
+}
