@@ -66,9 +66,9 @@ function draw() {
      for(var x = 0; x < video.width; x++){
        var index = (x + (y * video.width)) * 4;
        
-       video.pixels[index] = 112; //aqui tengo los rojos
+       video.pixels[index] = video.pixels[index + 1];; //aqui tengo los rojos
        video.pixels[index + 1] = video.pixels[index + 1]; //aqui tengo los verdes
-       video.pixels[index + 2] = video.pixels[index + 2]; //aqui tengo los azul
+       video.pixels[index + 2] = video.pixels[index ]; //aqui tengo los azul
        video.pixels[index + 3] = video.pixels[index + 3]; //aqui tengo el alpha
        
        
