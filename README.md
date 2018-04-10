@@ -32,3 +32,4 @@ El curso esta diseñado para el desarrollo de historias interactivas usando tecn
   - Trabajo Final (20%)
 
 # tarea2
+# Expandido
