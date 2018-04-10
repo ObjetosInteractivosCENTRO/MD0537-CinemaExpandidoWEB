@@ -35,7 +35,7 @@ var video;
 function preload() {
 
   //Video
-  video = createVideo("assets/videos/fingers.mov");
+  video = createVideo("assets/videos/taptap1.mov");
 }
 
 
