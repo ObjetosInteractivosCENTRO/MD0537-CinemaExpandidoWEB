@@ -1,5 +1,5 @@
 /*
- *
+ * 
  * Cinema Expandido Web
  * 1 (13.02.18)
  * Lalito Cabrera
@@ -18,6 +18,7 @@
  */
 
 var video;
+var playing=false;
 
 /*
  *****************************************
@@ -27,7 +28,7 @@ var video;
  *****************************************
  */
 function windowResized(){
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth/2, windowHeight/2);
 }
 
 function preload(){
@@ -55,20 +56,26 @@ function draw() {
  */
  
  function initializeVideo(){
-  
+
    video.loop();
    video.hide();
+   
  }
  
  
  
  function drawVideo4(){ 
+  // print(video.duration());
+   print(video.time());
+   video.volume(0.5);
+   video.time(mouseX/windowWidth);
    var correctionX = (windowWidth/2 - video.width/2);
    var correctionY = (windowHeight/2 - video.height/2);
    
    video.loadPixels();
-   
-   var stepSize= round(map(mouseX, 0, windowWidth, 8,60));
+   push();
+   //rotate(video.time());
+   var stepSize= round(map(video.time(), 0, video.duration(), 8,60));
    
    for(var y=0; y<video.height; y+=stepSize){
     for(var x=0; x<video.width;x+= stepSize){
@@ -86,7 +93,7 @@ function draw() {
     }
    }
    
-   
+   pop();
    //video.updatePixels();
    
    //image(video,correctionX,correctionY);
