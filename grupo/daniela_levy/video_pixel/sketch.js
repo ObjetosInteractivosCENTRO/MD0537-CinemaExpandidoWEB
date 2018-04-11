@@ -1,11 +1,11 @@
 /*
  *
  * cinema_Expandido_Web
- * PIXEL_ARRAY (13-FEB-18)
+ * PIXEL_ARRAY (20-MAR-18)
  * DANIELA LEVY ESSES
  * 
  *
- * URL: https://esdanylevy.github.io/CEW_pixel_array2/
+ * URL:
  */
 
 
@@ -19,6 +19,7 @@
 
 var video;
 
+var playing = false;
 /*
  *****************************************
  *****************************************
@@ -56,7 +57,7 @@ function draw() {
 
 function initializeVideo() {
 
-  video.loop();
+  //video.loop();
   video.hide();
 }
 
